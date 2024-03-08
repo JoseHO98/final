@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de libros</title>
+    <!-- Agregar la referencia a los archivos CSS de Bootstrap (localmente o a través de CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	
+
+    <div class="container">
+        <h1 class="mt-5">Libros</h1>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <form action="/libro/register" method="get">
+                    <button type="submit" class="btn btn-primary">Registrar Libros</button>
+                </form>
+                <form action="/report/report" method="get" class="float-right">
+                    <button type="submit" class="btn btn-secondary">Generar Reporte</button>
+                </form>
+            </div>
+        </div>
+       
+       <table class="table table-sm">
+       	<thead>
+			<tr class= "text-center bg-dark">
+				<th class="text-white">ID</th>
+				<th class="text-white">Nombre del libro</th>
+				<th class="text-white">Autor</th>
+				<th class="text-white">Fecha publicación</th>
+				<th class="text-white">Genero</th>
+				<th></th>
+				<th></th> 
+			</tr>
+		 </thead>
+		  <tbody th:each="libro : ${libro}">
+				     	 <tr>
+						     	<td class="text-center" th:text="${libro.id}"></td>
+						     	<td class="text-center" th:text="${libro.nombrelibro}"></td>
+						     	<td class="text-center" th:text="${libro.autor}"></td>
+						     	<td class="text-center" th:text="${libro.fechapublicacion}"></td>
+						     	<td class="text-center" th:text="${libro.TipoLibro.nombregenero}"></td>
+						      	<td> <a th:href="@{'/libro/edit/' + ${libro.id} }" class="btn btn-warning"> Editar </a></td>
+						      	<td> <a th:href="@{'/libro/delete/' + ${libro.id} }" 
+		                	onclick="return confirm('¿Está seguro de eliminar?');"
+		                	class="btn btn-danger"> Eliminar </a></td>
+						</tr>
+			</tbody>
+       </table >
+    </div>
+    
+    <!-- Agregar la referencia a los archivos JavaScript de Bootstrap (localmente o a través de CDN) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

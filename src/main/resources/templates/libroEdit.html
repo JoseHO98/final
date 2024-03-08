@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Libro</title>
+<!-- Agregar la referencia a los archivos CSS de Bootstrap (localmente o a través de CDN) -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container mt-5">
+		<h1 class="mt-5">Editar Usuario</h1>
+		<form action="/libro/edit" method="post">
+			<input type="hidden" th:value="${libro.id}" name="id">
+
+			<div class="form-group">
+				<label for="nombrelibro">Nombre del libro</label> <input type="text"
+					class="form-control" id="nombrelibro" name="nombrelibro"
+					th:value="${libro.nombrelibro}"
+					placeholder="Ingrese el nombre del libro" required>
+			</div>
+			<div class="form-group">
+				<label for="autor">Nombre del autor</label> <input type="text"
+					class="form-control" id="autor" name="autor"
+					th:value="${libro.autor}" placeholder="Ingrese el nombre del autor"
+					required>
+			</div>
+			<div class="form-group">
+				<label for="email">Fecha de publicación</label> <input type="date"
+					class="form-control" id="fechapublicacion" name="fechapublicacion"
+					th:value="${libro.fechapublicacion}" required>
+			</div>
+			<div class="form-group">
+				<label for="CodIdGenero">Tipo de libro</label> <select
+					class="form-control" name="cod_id_genero">
+					<option th:each="tipoLibro: ${tipolibros}"
+						th:value="${tipoLibro.codIdGenero}"
+						th:text="${tipoLibro.nombregenero}"
+						th:selected="${libro.TipoLibro.codIdGenero == tipoLibro.codIdGenero}">
+					</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Editar Libro</button>
+		</form>
+	</div>
+	<!-- Agregar la referencia a los archivos JavaScript de Bootstrap (localmente o a través de CDN) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
